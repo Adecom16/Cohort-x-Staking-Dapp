@@ -24,17 +24,17 @@ const useStakeBalance = (poolId) => {
       const signer = readWriteProvider.getSigner();
 
       const contract = new ethers.Contract(
-        import.meta.env.VITE_contract_address,
+        import.meta.env.VITE_staking_contract_address,
         contractAbi,
         signer
       );
 
       try {
-        const transaction = await contract.getUserStakeBalance(
+        const userStakeBalance = await contract.getUserStakeBalance(
           poolId,
-          signer.getAddress()
+          signer
         );
-        const balance = Number(transaction);
+        const balance = Number(userStakeBalance);
         setStakeBalance(balance);
       } catch (error) {
         console.error("Error fetching stake balance:", error);
@@ -44,7 +44,7 @@ const useStakeBalance = (poolId) => {
     fetchData();
   }, [chainId, poolId, walletProvider]);
 
-  console.log("got here");
+  console.log("Reached this point");
 
   return stakeBalance;
 };

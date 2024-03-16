@@ -17,7 +17,7 @@ const useStake = () => {
   return useCallback(
     async (amount) => {
       if (!amount) {
-        // Handle the case when amount is undefined or null
+       
         toast.error("Please enter a valid amount to stake");
         return;
       }
@@ -42,7 +42,7 @@ const useStake = () => {
         signer
       );
 
-      const value = ethers.parseUnits(amount.toString(), 18); // Convert amount to string before parsing
+      const value = ethers.parseUnits(amount.toString(), 18); 
 
       try {
         const approve = await rewardTokenContract.approve(

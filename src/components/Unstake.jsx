@@ -1,10 +1,26 @@
 import React, { useState } from "react";
+import useUnstake from "../hooks/useUnstake"; 
 
 const Unstake = () => {
-  const [amount, setAmount] = useState(0);
+  const [poolID, setPoolID] = useState(""); 
+  const [amount, setAmount] = useState(""); 
+
+  const unstake = useUnstake();
+
+  const handleUnstake = async () => {
+    if (!poolID) {
+      alert("Please enter a Pool ID");
+      return;
+    }
+    await unstake(poolID);
+  };
 
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
+  };
+
+  const handlePoolIDChange = (e) => {
+    setPoolID(e.target.value);
   };
 
   return (
@@ -12,12 +28,15 @@ const Unstake = () => {
       <div className="mb-4">
         <h1 className="text-xl font-bold">Unstake</h1>
         <input
-          value={amount}
-          onChange={handleAmountChange}
-          placeholder="Enter Voter's Address"
+          value={poolID}
+          onChange={handlePoolIDChange}
+          placeholder="Enter Pool ID"
           className="w-full p-2 border rounded-md"
         />
-        <button className="text-white bg-blue-600 py-1 px-4 rounded-md">
+        <button
+          onClick={handleUnstake}
+          className="text-white bg-blue-600 py-1 px-4 rounded-md"
+        >
           Unstake
         </button>
       </div>

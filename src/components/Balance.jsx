@@ -11,7 +11,7 @@ const StakeBalance = ({ poolId }) => {
           <h1 className="text-xl font-bold">Stake Balance</h1>
         </div>
         <div className="mb-4">
-          <p>Pool ID: {poolId}</p>
+          {/* <p>Pool ID: {poolId}</p> */}
           <p>Stake Balance: {stakeBalance}</p>
         </div>
       </div>
